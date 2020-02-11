@@ -1,10 +1,16 @@
 require "yaml"
 require "pry"
 MESSAGES = YAML.load_file("loan_msg.yml")
-def calc(loan, mir, n, t="months")
+def calc(loan, mir, n, t)
   n *= 12 if t == "years"
+  loan = 0 unless loan
+  mir = 0 unless mir
+  return mp = 0 if loan == 0
+  return mp = loan / n if mir == 0
   mp = loan * (mir / (1 - (1 + mir)**(-n)))
-  mp = loan / n if mir == 0
+end
+
+def display_mp(mp)
   "\nYour monthly installments amount to: #{mp}"
 end
 
@@ -99,33 +105,33 @@ def settings(options)
   end
 end
 
-def prompts_rb(options, ans)
-  loop do
-    options = settings(options) if ans == "options" || ans == "option"
-    puts " >> Loan amount: "
-    loan = conversion(gets.chomp).to_f
-    puts " >> Monthly Interest Rate: "
-    mir = conversion(gets.chomp)
-    options[:alter] == true ? mir = month_interest(mir, true) : mir = month_interest(mir)
-    puts mir
-    n = duration_p
-    puts calc(loan, mir, n, options[:type])
-    output_r = prompts_yml("repeat")
-    puts output_r
-    ans = gets.chomp
-    ans.downcase!
-    exit unless ans == "repeat" || ans == "options" || ans == "option"
-  end
-end
 options = {
   type: "months",
   type_opp: "years",
   alter: false,
   alter_opp: true
 }
+loan = 0.0
+mir = 0.0
+n = 0
 output_w = prompts_yml("welcome", options)
 # Setting up my YAML messages to have variables plugged into
 puts output_w
-temp = gets.chomp
-temp.downcase!
-prompts_rb(options, temp)
+ans = gets.chomp
+ans.downcase!
+options = settings(options) if ans == "options" || ans == "option"
+puts " >> Loan amount: "
+loan = conversion(gets.chomp).to_f
+puts " >> Monthly Interest Rate: "
+mir = conversion(gets.chomp)
+options[:alter] == true ? mir = month_interest(mir, true) : mir = month_interest(mir)
+puts mir
+n = duration_p
+pry.binding
+mp = calc(loan, mir, n, options[:type])
+display_mp(mp)
+output_r = prompts_yml("repeat")
+puts output_r
+ans = gets.chomp
+ans.downcase!
+exit unless ans == "repeat" || ans == "options" || ans == "option"

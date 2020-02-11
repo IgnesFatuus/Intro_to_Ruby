@@ -1,0 +1,13 @@
+# Prompts for L2 (experimental) and l2_calc (stable)
+
+welcome: "Welcome: this is a simple calculator, using the basic operands. \n Have fun with testing it out."
+input: ">>Enter mathematical operation(e.g. 2+2):"
+
+################## ERRORS ##############
+NonDigit: "Error: Non-numerals and non-operands found"
+    # If a non-operand/non-numeral is found
+BadStart: "Error: Non-numeral starter"
+    # If expression begins with a non-numeral
+OperandAdj: "Error: Multiple adjacent operands"
+    # If multiple operands are adjacent to one another
+valid: "No Errors: Proceeding..."

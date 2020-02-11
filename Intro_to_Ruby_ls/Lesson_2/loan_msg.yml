@@ -1,0 +1,21 @@
+welcome: "We will need three pieces of information to proceed
+\nLoan amount, Monthly Interest Rate (MIR), and loan duration
+\nLoan duration is in %{duration_type}
+\nIf no percentage sign is present in MIR, value alteration is set to %{alteration}
+\nAll empty fields will be converted to zero
+\nAll non-numerals (exclude trailing percent in MIR) will be treated as zeroes.
+\nAll negative numbers will convert to their absolute value\n
+>> You may type option(s) now to change a setting"
+
+repeat: "\n\nTo repeat with same settings\n
+>>repeat
+\nWith different settings\n
+>>option(s)
+\nTo exit program\n
+>>anything else"
+
+
+options: "\n    >>>SETTINGS<<<
+\nLoan duration type: %{duration_type}
+\nValue alteration: %{alteration}\n\n"
+

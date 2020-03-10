@@ -1,0 +1,12 @@
+greeting: "Welcome to my Rock Paper Scissors project."
+
+prompt_user: "\n>>>Please input Rock, Paper, or Scissors: "
+
+prompt_bad_value: "\n>>>Input must be Rock, Paper, or Scissors: "
+
+result: "\n\nYou chose %{player_choice}
+\nThe CPU chose %{cpu_choice}
+\nYou %{outcome}
+\n>>>Play again? Y/N: "
+
+display_record: "Would you like to view your records? Y/N: "

@@ -152,10 +152,10 @@ def calculate(operation)
   operation.instance_eval(operation)
 end
 again = ""
-valid_express = false
 error_count = 0
 errors = []
 until again =~ /^NO$|^N$/
+  valid_express = false
   until valid_express
     puts ">>>Enter an expression: "
     expression = gets.chomp

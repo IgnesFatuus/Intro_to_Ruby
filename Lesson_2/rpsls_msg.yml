@@ -1,0 +1,23 @@
+greeting: "Welcome to my Rock Paper Scissors (Lizard Spock) project."
+
+note: "<To play classic: Enter 1, to play Lizard Spock: Enter 2> Default is classic"
+
+prompt_user: "\n>>>Please input Rock, Paper, or Scissors: "
+
+prompt_user_sl: "\n>>>Please input Rock, Paper, Scissors, Lizard, or Spock: "
+
+prompt_bad_value: "\n>>>Input must be Rock, Paper, or Scissors: "
+
+prompt_bad_value_sl: "\n>>>Input must be Rock, Paper, Scissors, Lizard, or Spock: "
+
+result: "\n\nYou chose %{player_choice}
+\nThe CPU chose %{cpu_choice}
+\nYou %{outcome}
+\n\n >>>Play again? Y/N: 
+\n<Enter swap to switch modes>"
+
+display_record: "Would you like to view your records? Y/N: "
+
+swap_classic: "<Swapping to classic>\n\n"
+
+swap_sl: "<Swapping to Lizard Spock>\n\n"

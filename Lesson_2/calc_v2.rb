@@ -1,5 +1,4 @@
 require "yaml"
-require "pry"
 
 DIGITS =
   {
@@ -10,7 +9,7 @@ DIGITS =
 VALIDS =
   {
     "(" => true, ")" => true, "*" => true, "**" => true,
-    "/" => true, "+" => true, "-" => true
+    "/" => true, "+" => true, "-" => true, "." => true
   }
 
 def clean_expression(operation)
@@ -148,13 +147,30 @@ def display_errors(amount, errors)
   errors.each { |type, offender| puts "#{type} => #{offender}" }
 end
 
-def calculate(operation)
-  operation.instance_eval(operation)
+def calc_something_else?
+  puts "Would you like to calculate something else? Y/N: "
+  answer = gets.chomp.upcase
+  loop do
+    return true if answer =~ /^YES$|^Y$/
+    return false if answer =~ /^NO$|^N$/
+    puts "I can't proceed without a 'Yes' or a 'No'"
+    answer = gets.chomp.upcase
+  end
 end
-again = ""
+
+def calculate(operation)
+  begin
+    operation.instance_eval(operation)
+  rescue ZeroDivisionError
+    puts "Uh-oh! Someone tried to break the universe by dividing by zero"
+    operation = 0
+  end
+end
+again = true
+
 error_count = 0
 errors = []
-until again =~ /^NO$|^N$/
+until again == false
   valid_express = false
   until valid_express
     puts ">>>Enter an expression: "
@@ -175,6 +191,5 @@ until again =~ /^NO$|^N$/
   #done cleaning
   print "#{expression} = "
   puts calculate(expression)
-  puts "Would you like to calculate something else? Y/N: "
-  again = gets.chomp.upcase
+  again = calc_something_else?
 end

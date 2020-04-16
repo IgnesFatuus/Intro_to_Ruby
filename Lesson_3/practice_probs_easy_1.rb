@@ -34,6 +34,7 @@ Put !! before something, like !!user_name
 
 
 advice = "Few things in life are as important as house training your pet dinosaur."
+Swap important with urgent
   advice.gsub!("important", "urgent")
 
 

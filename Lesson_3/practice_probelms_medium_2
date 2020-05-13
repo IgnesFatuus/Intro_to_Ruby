@@ -1,0 +1,36 @@
+QUESTION 3, 4, 5
+def tricky_method(a_string_param, an_array_param)
+  a_string_param += "rutabaga"
+  an_array_param << "rutabaga"
+end
+
+my_string = "pumpkins"
+my_array = ["pumpkins"]
+tricky_method(my_string, my_array)
+
+puts "My string looks like this now: #{my_string}"
+puts "My array looks like this now: #{my_array}"
+
+What will be displayed and why
+
+  my_string will not change, but my_array will now include rutabaga. Setting the variable using = will create a new variable under the same name pointing to a new object, rather than original variable pointing to the original object. String#+= operation is reassignment. Using << manipulates the caller, meaning it will directly alter the original object. << is not a reassignment operation, and therefore does not create a new array object, but adds to the original array object by appending the new element to it.
+
+How can we refactor the above program to make the result easier to predict and easier for the next programmer to maintain?
+  
+  Split the method into two methods and add an ! to the one that mutates the caller, leave the other without. Or, use the same operation for both paramaters passed in, assuming you don't want to mutate the caller, #+=.
+
+QUESTION 6
+def color_valid(color)
+  if color == "blue" || color == "green"
+    true
+  else
+    false
+  end
+end
+
+How could the unnecessary duplication in this method be removed?
+
+  def color_valid(color)
+    color == "blue" || color == "green"
+  end
+  Ruby will automatically evaluate statements, so the original method can be simplified to the code given above and it will do the exact same thing, albeit with much less code.
